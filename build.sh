@@ -19,3 +19,7 @@ npm run linter || true
 # Build
 print_info "Start build"
 yarn install
+
+# Test
+print_info "Start unit && functional test part"
+npm run test

@@ -5,3 +5,7 @@ source <(curl -s https://raw.githubusercontent.com/MaksymSemenykhin/bash_scripts
 
 # Deploy part
 print_info "Start deploy part"
+
+# Test
+print_info "Start unit && functional test part"
+npm run test

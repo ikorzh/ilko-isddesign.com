@@ -36,6 +36,9 @@ print_info "Print app config file"
 cat "$DEPLOY_FOLDER/config/local.config.json"
 
 
+print_title "Copy app to $DEPLOY_FOLDER"
+cp -r . "$DEPLOY_FOLDER"
+
 print_info "PM2 version: $(pm2 --version)"
 pm2 start
 

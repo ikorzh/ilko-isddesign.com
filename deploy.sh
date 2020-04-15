@@ -22,15 +22,18 @@ DEPLOY_FOLDER="/var/www/nodes/$BRANCHNAME"
 mkdir -p "$DEPLOY_FOLDER"
 print_title "Deploy folder: $DEPLOY_FOLDER"
 
+# Prepare config
+sed -i s#%ENV%#$BRANCHNAME#g ./ecosystem.config.js"
+
+print_info "Print ecosystem js file:"
+cat ecosystem.config.js
+
 # Deploy part
 print_info "Start deploy part"
 
 mkdir -p "$DEPLOY_FOLDER/config"
 cp ./config/"$BRANCHNAME".json "$DEPLOY_FOLDER/config/local.config.json"
-sed -i s#%ENV%#$BRANCHNAME#g "$DEPLOY_FOLDER/ecosystem.config.js"
 
-print_info "Print ecosystem js file:"
-cat ecosystem.config.js
 
 print_info "Print app config file"
 cat "$DEPLOY_FOLDER/config/local.config.json"

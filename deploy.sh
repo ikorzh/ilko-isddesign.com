@@ -20,13 +20,13 @@ fi
 # Prereq.
 DEPLOY_FOLDER="/var/www/nodes/$BRANCHNAME"
 mkdir -p "$DEPLOY_FOLDER"
-print_title "Deploy folder: $DEPLOY_FODLER"
+print_title "Deploy folder: $DEPLOY_FOLDER"
 
 # Deploy part
 print_info "Start deploy part"
 
-mkdir -p "$DEPLOY_FODLER/config"
-cp ./config/"$BRANCHNAME".json "$DEPLOY_FODLER/config/"$BRANCHNAME".json"
+mkdir -p "$DEPLOY_FOLDER/config"
+cp ./config/"$BRANCHNAME".json "$DEPLOY_FOLDER/config/"$BRANCHNAME".json"
 
 print_info "PM2 version: $(pm2 --version)"
 pm2 start

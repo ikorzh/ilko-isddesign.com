@@ -24,6 +24,7 @@ print_title "Deploy folder: $DEPLOY_FOLDER"
 
 # Prepare config
 sed -i s#%ENV%#$BRANCHNAME#g ./ecosystem.config.js
+sed -i s#development#$BRANCHNAME#g ./ecosystem.config.js
 
 print_info "Print ecosystem js file:"
 cat ecosystem.config.js

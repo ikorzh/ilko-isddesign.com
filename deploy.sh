@@ -45,6 +45,7 @@ cp -r . "$DEPLOY_FOLDER"
 
 print_info "PM2 version: $(pm2 --version)"
 cd "$DEPLOY_FOLDER"
+export NODE_ENV=$BRANCHNAME
 pm2 start
 
 # Test

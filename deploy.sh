@@ -44,6 +44,7 @@ print_title "Copy app to $DEPLOY_FOLDER"
 cp -r . "$DEPLOY_FOLDER"
 
 print_info "PM2 version: $(pm2 --version)"
+cd "$DEPLOY_FOLDER"
 pm2 start
 
 # Test

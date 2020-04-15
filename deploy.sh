@@ -1,10 +1,35 @@
-#!/bin/bash -e
+#!/bin/bash 
 
+set -e
+
+# input params
+BRANCHNAME=$1
+
+# Source functions
 echo "Source remote git repo:"
 source <(curl -s https://raw.githubusercontent.com/MaksymSemenykhin/bash_scripts/master/output.sh)
 
+# Check input params
+if [[ ${BRANCHNAME} =~ ^(dev|master)$ ]]; then
+  print_title "Select branch: $BRANCHNAME"
+else
+  print_error "ERROR. Branch not correct. Script stoped."
+fi
+
+
+# Prereq.
+DEPLOY_FOLDER="/var/www/nodes/$BRANCHNAME"
+mkdir -p "$DEPLOY_FOLDER"
+print_title "Deploy folder: $DEPLOY_FODLER"
+
 # Deploy part
 print_info "Start deploy part"
+
+mkdir -p "$DEPLOY_FODLER/config"
+cp ./config/"$BRANCHNAME".json "$DEPLOY_FODLER/config/"$BRANCHNAME".json"
+
+print_info "PM2 version: $(pm2 --version)"
+pm2 start
 
 # Test
 print_info "Start unit && functional test part"

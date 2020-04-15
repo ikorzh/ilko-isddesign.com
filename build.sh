@@ -14,7 +14,7 @@ print_title "Yarn $(yarn -v)"
 
 # Build
 print_info "Start build"
-yarn install
+npm install
 
 # Linter
 # FIXME: Need check

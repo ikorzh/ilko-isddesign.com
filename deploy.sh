@@ -26,7 +26,15 @@ print_title "Deploy folder: $DEPLOY_FOLDER"
 print_info "Start deploy part"
 
 mkdir -p "$DEPLOY_FOLDER/config"
-cp ./config/"$BRANCHNAME".json "$DEPLOY_FOLDER/config/"$BRANCHNAME".json"
+cp ./config/"$BRANCHNAME".json "$DEPLOY_FOLDER/config/local.config.json"
+sed -i s#%ENV%#$BRANCHNAME#g "$DEPLOY_FOLDER/ecosystem.config.js"
+
+print_info "Print ecosystem js file:"
+cat ecosystem.config.js
+
+print_info "Print app config file"
+cat "$DEPLOY_FOLDER/config/local.config.json"
+
 
 print_info "PM2 version: $(pm2 --version)"
 pm2 start

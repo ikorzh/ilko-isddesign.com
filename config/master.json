@@ -1,0 +1,7 @@
+{
+  "user": {
+    "allow_new": true
+  },
+  "env": "master",
+  "port": "8001"
+}

@@ -43,11 +43,25 @@ cat "$DEPLOY_FOLDER/config/local.config.json"
 print_title "Copy app to $DEPLOY_FOLDER"
 cp -r . "$DEPLOY_FOLDER"
 
-print_info "PM2 version: $(pm2 --version)"
+#print_info "PM2 version: $(pm2 --version)"
 cd "$DEPLOY_FOLDER"
-export NODE_ENV=$BRANCHNAME
-pm2 start
+#export NODE_ENV=$BRANCHNAME
+#pm2 start
+
+docker build -t "$BRANCHNAME-app-local:latest" . 
+docker images
+
+if [[ -f docker-compose.yml ]]; then
+    echo "Compose file exist."
+else
+    echo "ERROR. Compose file not found."
+fi
+
+docker-compose up -d
+
+APP_PORT=$(jq -r '.port' ./config/"$BRANCHNAME".json)
+netstat -anp | grep "$APP_PORT"
 
 # Test
-print_info "Start unit && functional test part"
-npm run test
+#print_info "Start unit && functional test part"
+#npm run test

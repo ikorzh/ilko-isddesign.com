@@ -3,5 +3,5 @@
     "allow_new": true
   },
   "env": "dev",
-  "port": "8002"
+  "port": "8010"
 }

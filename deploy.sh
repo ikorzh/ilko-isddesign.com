@@ -48,6 +48,8 @@ cd "$DEPLOY_FOLDER"
 #export NODE_ENV=$BRANCHNAME
 #pm2 start
 
+#yes | docker system prune -a
+
 docker build -t "$BRANCHNAME-app-local:latest" . 
 docker images
 

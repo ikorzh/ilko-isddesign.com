@@ -62,7 +62,13 @@ fi
 docker-compose up -d
 
 APP_PORT=$(jq -r '.port' ./config/"$BRANCHNAME".json)
-netstat -anp | grep "$APP_PORT"
+sleep 30
+
+echo "Open port check:"
+netstat -tlnp | grep "$APP_PORT"
+
+echo "Check $BRANCHNAME-app-local container status:"
+docker inspect "$BRANCHNAME-app" 2>&1 | jq -r '.[].State.Status'
 
 # Test
 #print_info "Start unit && functional test part"
